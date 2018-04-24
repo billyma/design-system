@@ -142,7 +142,7 @@
     "stylelint-config-slds": "1.0.7",
     "stylestats": "7.0.1",
     "temp": "0.8.3",
-    "theo": "6.0.0-beta.2",
+    "theo": "git@github.com:billyma/theo.git#aura-token-update",
     "through2": "2.0.3",
     "tinycolor2": "1.4.1",
     "touch": "3.1.0",
