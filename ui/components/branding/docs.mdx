@@ -37,7 +37,8 @@ This page is for informational purposes only.
 <Tokens open>
   <Token token="BRAND_PRIMARY" grid />
   <Token token="BRAND_PRIMARY_ACTIVE" grid />
-  <Token token="BRAND_PRIMARY_TRANSPARENT" grid />
+  <Token token="BRAND_PRIMARY_TRANSPARENT_10" grid />
+  <Token token="BRAND_PRIMARY_TRANSPARENT_40" grid />
 </Tokens>
 
 ### Light/Dark Brand colors
@@ -60,10 +61,14 @@ This page is for informational purposes only.
 ### Header Brand colors
 <Tokens open>
   <Token token="BRAND_HEADER" grid />
-  <Token token="BRAND_HEADER_ICON" grid />
-  <Token token="BRAND_HEADER_ICON_ACTIVE" grid />
   <Token token="BRAND_HEADER_CONTRAST" grid />
   <Token token="BRAND_HEADER_CONTRAST_ACTIVE" grid />
+  <Token token="BRAND_HEADER_CONTRAST_WEAK" grid />
+  <Token token="BRAND_HEADER_CONTRAST_WEAK_ACTIVE" grid />
+  <Token token="BRAND_HEADER_CONTRAST_COOL" grid />
+  <Token token="BRAND_HEADER_CONTRAST_COOL_ACTIVE" grid />
+  <Token token="BRAND_HEADER_CONTRAST_WARM" grid />
+  <Token token="BRAND_HEADER_CONTRAST_WARM_ACTIVE" grid />
 </Tokens>
 
 ### Background Brand colors
@@ -81,8 +86,12 @@ This page is for informational purposes only.
 
 <Tokens>
   <Token token="BRAND_HEADER" />
-  <Token token="BRAND_HEADER_ICON" />
-  <Token token="BRAND_HEADER_ICON_ACTIVE" />
+  <Token token="BRAND_HEADER_CONTRAST_WEAK" />
+  <Token token="BRAND_HEADER_CONTRAST_WEAK_ACTIVE" />
+  <Token token="BRAND_HEADER_CONTRAST_COOL" grid />
+  <Token token="BRAND_HEADER_CONTRAST_COOL_ACTIVE" grid />
+  <Token token="BRAND_HEADER_CONTRAST_WARM" grid />
+  <Token token="BRAND_HEADER_CONTRAST_WARM_ACTIVE" grid />
 </Tokens>
 
 ## Global Navigation
@@ -132,8 +141,8 @@ This page is for informational purposes only.
 </Tokens>
 
 ## Button Brand
-<Button className="slds-button_brand">Button Brand</Button>
-<Button className="slds-button_brand" disabled>Button Brand</Button>
+<Button isBrand>Button Brand</Button>
+<Button isBrand" disabled>Button Brand</Button>
 
 <Tokens>
   <Token token="BRAND_ACCESSIBLE" />

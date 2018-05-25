@@ -98,7 +98,7 @@ export let examples = [
           <button className="slds-button slds-button_neutral">Edit</button>
           <button className="slds-button slds-button_neutral">Save</button>
           <Trigger className="slds-button_last slds-is-open">
-            <Menu className="slds-dropdown_right">
+            <Menu className="slds-dropdown_right slds-dropdown_actions">
               <MenuList>
                 <MenuItem tabIndex="0">Overflow Item One</MenuItem>
                 <MenuItem>Overflow Item Two</MenuItem>
@@ -231,7 +231,7 @@ export let examples = [
         <ButtonIcon
           className="slds-button_icon-more"
           hasDropdown
-          assitiveText="More Actions"
+          assistiveText="More Actions"
           title="More Actions"
         />
       </ButtonGroup>
@@ -259,7 +259,7 @@ export let examples = [
         <ButtonIcon
           className="slds-button_icon-more"
           hasDropdown
-          assitiveText="More Actions"
+          assistiveText="More Actions"
           title="More Actions"
         />
       </ButtonGroup>

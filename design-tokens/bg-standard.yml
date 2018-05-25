@@ -379,3 +379,33 @@ props:
     value: '#62B7ED'
   SURVEY:
     value: '#319FD6'
+  DATA_INTEGRATION_HUB:
+    value: '#2A739E'
+  ACTION_LIST_COMPONENT:
+    value: '#5876A3'
+  STAGE:
+    value: '#FF9A3C'
+  STAGE_COLLECTION:
+    value: '#FF9A3C'
+  KNOWLEDGE:
+    value: '#EC94ED'
+  LIVE_CHAT_VISITOR:
+    value: '#F68960'
+  READ_RECEIPTS:
+    value: '#4BC076'
+  RETAIL_BANKING:
+    value: '#00D2BE'
+  WEALTH_MANAGEMENT:
+    value: '#00D2BE'
+  INSURANCE:
+    value: '#00D2BE'
+  RETAIL_BANKING_CONSOLE:
+    value: '#00AFA0'
+  WEALTH_MANAGEMENT_CONSOLE:
+    value: '#00AFA0'
+  INSURANCE_CONSOLE:
+    value: '#00AFA0'
+  INDIVIDUAL:
+    value: '#3C97DD'
+  LOGGING:
+    value: '#00A1DF'

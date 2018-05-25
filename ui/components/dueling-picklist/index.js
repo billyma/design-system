@@ -12,32 +12,63 @@ import _ from '../../shared/helpers';
 
 export const MultiSelect = props => {
   return (
-    <div className="slds-dueling-list">
+    <div
+      className="slds-form-element"
+      role="group"
+      aria-labelledby="picklist-group-label"
+    >
       <div
-        className="slds-assistive-text"
-        id="drag-live-region"
-        aria-live="assertive"
+        id="picklist-group-label"
+        className="slds-form-element__label slds-form-element__legend slds-text-title_caps"
       >
-        {props.dataSet.liveRegionText}
+        Select Options
       </div>
-      <div className="slds-assistive-text" id="option-drag-label">
-        {props.dataSet.optionDragLabel}
+      <div className="slds-dueling-list">
+        <div
+          className="slds-assistive-text"
+          id="drag-live-region"
+          aria-live="assertive"
+        >
+          {props.dataSet.liveRegionText}
+        </div>
+        <div className="slds-assistive-text" id="option-drag-label">
+          {props.dataSet.optionDragLabel}
+        </div>
+        <SelectionGroup
+          disabled={props.disabled}
+          isResponsive={props.isResponsive}
+          group={props.dataSet.selectionGroups[0]}
+        />
+        <MoveButtons
+          direction="horizontal"
+          targetA={props.dataSet.selectionGroups[0].label}
+          targetB={props.dataSet.selectionGroups[1].label}
+          disabled={props.disabled}
+        />
+        <SelectionGroup
+          disabled={props.disabled}
+          isResponsive={props.isResponsive}
+          group={props.dataSet.selectionGroups[1]}
+        />
+        {!props.noReorder && (
+          <MoveButtons disabled={props.disabled} direction="vertical" />
+        )}
       </div>
-      <SelectionGroup
-        disabled={props.disabled}
-        group={props.dataSet.selectionGroups[0]}
-      />
-      <MoveButtons
-        direction="horizontal"
-        targetA={props.dataSet.selectionGroups[0].label}
-        targetB={props.dataSet.selectionGroups[1].label}
-        disabled={props.disabled}
-      />
-      <SelectionGroup
-        disabled={props.disabled}
-        group={props.dataSet.selectionGroups[1]}
-      />
-      <MoveButtons disabled={props.disabled} direction="vertical" />
+    </div>
+  );
+};
+
+export const MultiSelectViewMode = props => {
+  return (
+    <div className="slds-dueling-list">
+      <div className="slds-form-element">
+        <span className="slds-form-element__label">Selected Languages</span>
+        <div className="slds-form-element__control">
+          <span className="slds-form-element__static">
+            Arabic, Chinese, English, German
+          </span>
+        </div>
+      </div>
     </div>
   );
 };
@@ -82,7 +113,11 @@ const MoveButtons = props => {
 const SelectionGroup = props => {
   const groupLabelID = _.uniqueId('label-');
   return (
-    <div className="slds-dueling-list__column">
+    <div
+      className={classNames('slds-dueling-list__column', {
+        'slds-dueling-list__column_responsive': props.isResponsive
+      })}
+    >
       <span className="slds-form-element__label" id={groupLabelID}>
         {props.group.label}
       </span>
@@ -101,7 +136,6 @@ const ListBox = props => (
     className={classNames('slds-dueling-list__options', {
       'slds-is-disabled': props.disabled
     })}
-    role="application"
   >
     <ul
       aria-describedby="option-drag-label"
@@ -339,7 +373,7 @@ export const SelectedSnapShot = {
         {
           text: 'Option 1',
           tabIndex: 0,
-          isSelected: true,
+          isSelected: false,
           isGrabbed: false
         },
         {
@@ -367,14 +401,14 @@ export const SelectedSnapShot = {
       options: [
         {
           text: 'Option 4',
-          tabIndex: 0,
+          tabIndex: -1,
           isSelected: false,
           isGrabbed: false
         },
         {
           text: 'Option 5',
-          tabIndex: -1,
-          isSelected: false,
+          tabIndex: 0,
+          isSelected: true,
           isGrabbed: false
         }
       ]
@@ -438,7 +472,7 @@ export const MultiSelectedSnapShot = {
 
 export const GrabbedSnapShot = {
   liveRegionText:
-    'Option 3: current position 3 of 4. Press up or down arrows to move within list.',
+    'Option 5: current position 2 of 2. Press up or down arrows to move within list.',
   optionDragLabel: '',
   selectionGroups: [
     {
@@ -446,7 +480,7 @@ export const GrabbedSnapShot = {
       options: [
         {
           text: 'Option 1',
-          tabIndex: -1,
+          tabIndex: 0,
           isSelected: false,
           isGrabbed: false
         },
@@ -458,9 +492,9 @@ export const GrabbedSnapShot = {
         },
         {
           text: 'Option 3',
-          tabIndex: 0,
-          isSelected: true,
-          isGrabbed: true
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
         },
         {
           text: 'Option 6',
@@ -475,15 +509,15 @@ export const GrabbedSnapShot = {
       options: [
         {
           text: 'Option 4',
-          tabIndex: 0,
+          tabIndex: -1,
           isSelected: false,
           isGrabbed: false
         },
         {
           text: 'Option 5',
-          tabIndex: -1,
-          isSelected: false,
-          isGrabbed: false
+          tabIndex: 0,
+          isSelected: true,
+          isGrabbed: true
         }
       ]
     }
@@ -491,7 +525,7 @@ export const GrabbedSnapShot = {
 };
 
 export const MovedInSnapShot = {
-  liveRegionText: 'Option 3: current position 2 of 4.',
+  liveRegionText: 'Option 5: current position 1 of 2.',
   optionDragLabel: '',
   selectionGroups: [
     {
@@ -499,15 +533,15 @@ export const MovedInSnapShot = {
       options: [
         {
           text: 'Option 1',
-          tabIndex: -1,
+          tabIndex: 0,
           isSelected: false,
           isGrabbed: false
         },
         {
           text: 'Option 3',
-          tabIndex: 0,
-          isSelected: true,
-          isGrabbed: true
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
         },
         {
           text: 'Option 2',
@@ -527,13 +561,13 @@ export const MovedInSnapShot = {
       label: 'Second Category',
       options: [
         {
-          text: 'Option 4',
+          text: 'Option 5',
           tabIndex: 0,
-          isSelected: false,
-          isGrabbed: false
+          isSelected: true,
+          isGrabbed: true
         },
         {
-          text: 'Option 5',
+          text: 'Option 4',
           tabIndex: -1,
           isSelected: false,
           isGrabbed: false
@@ -544,7 +578,7 @@ export const MovedInSnapShot = {
 };
 
 export const DroppedSnapShot = {
-  liveRegionText: 'Option 3: final position 2 of 4.',
+  liveRegionText: 'Option 5: final position 1 of 2.',
   optionDragLabel:
     'Press space bar when on an item, to move it within the list. CMD plus left and right arrow keys, to move items between lists.',
   selectionGroups: [
@@ -553,14 +587,14 @@ export const DroppedSnapShot = {
       options: [
         {
           text: 'Option 1',
-          tabIndex: -1,
+          tabIndex: 0,
           isSelected: false,
           isGrabbed: false
         },
         {
           text: 'Option 3',
-          tabIndex: 0,
-          isSelected: true,
+          tabIndex: -1,
+          isSelected: false,
           isGrabbed: false
         },
         {
@@ -581,13 +615,13 @@ export const DroppedSnapShot = {
       label: 'Second Category',
       options: [
         {
-          text: 'Option 4',
+          text: 'Option 5',
           tabIndex: 0,
-          isSelected: false,
+          isSelected: true,
           isGrabbed: false
         },
         {
-          text: 'Option 5',
+          text: 'Option 4',
           tabIndex: -1,
           isSelected: false,
           isGrabbed: false
@@ -630,7 +664,7 @@ export const MoveToSnapShot = {
       options: [
         {
           text: 'Option 4',
-          tabIndex: 0,
+          tabIndex: -1,
           isSelected: false,
           isGrabbed: false
         },
@@ -642,6 +676,246 @@ export const MoveToSnapShot = {
         },
         {
           text: 'Option 3',
+          tabIndex: 0,
+          isSelected: true,
+          isGrabbed: false
+        }
+      ]
+    }
+  ]
+};
+
+export const CountriesSnapshot = {
+  liveRegionText: '',
+  optionDragLabel:
+    'Press space bar when on an item, to move it within the list. CMD plus left and right arrow keys, to move items between lists.',
+  selectionGroups: [
+    {
+      label: 'Available Languages',
+      options: [
+        {
+          text: 'Arabic',
+          tabIndex: 0,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'Dutch',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'German',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'Hindi',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'Tobagonian Creole English',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        }
+      ]
+    },
+    {
+      label: 'Selected Languages',
+      options: [
+        {
+          text: 'Chinese',
+          tabIndex: 0,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'English',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        }
+      ]
+    }
+  ]
+};
+
+export const SelectedCountriesSnapshot = {
+  liveRegionText: '',
+  optionDragLabel:
+    'Press space bar when on an item, to move it within the list. CMD plus left and right arrow keys, to move items between lists.',
+  selectionGroups: [
+    {
+      label: 'Available Languages',
+      options: [
+        {
+          text: 'Arabic',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'Dutch',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'German',
+          tabIndex: 0,
+          isSelected: true,
+          isGrabbed: false
+        },
+        {
+          text: 'Hindi',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'Tobagonian Creole English',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        }
+      ]
+    },
+    {
+      label: 'Selected Languages',
+      options: [
+        {
+          text: 'Chinese',
+          tabIndex: 0,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'English',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        }
+      ]
+    }
+  ]
+};
+
+export const MultipleSelectedCountriesSnapshot = {
+  liveRegionText: '',
+  optionDragLabel:
+    'Press space bar when on an item, to move it within the list. CMD plus left and right arrow keys, to move items between lists.',
+  selectionGroups: [
+    {
+      label: 'Available Languages',
+      options: [
+        {
+          text: 'Arabic',
+          tabIndex: -1,
+          isSelected: true,
+          isGrabbed: false
+        },
+        {
+          text: 'Dutch',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'German',
+          tabIndex: 0,
+          isSelected: true,
+          isGrabbed: false
+        },
+        {
+          text: 'Hindi',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'Tobagonian Creole English',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        }
+      ]
+    },
+    {
+      label: 'Selected Languages',
+      options: [
+        {
+          text: 'Chinese',
+          tabIndex: 0,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'English',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        }
+      ]
+    }
+  ]
+};
+
+export const DroppedCountriesSnapshot = {
+  liveRegionText: 'Arabic and German: Moved to Selected Languages.',
+  optionDragLabel:
+    'Press space bar when on an item, to move it within the list. CMD plus left and right arrow keys, to move items between lists.',
+  selectionGroups: [
+    {
+      label: 'Available Languages',
+      options: [
+        {
+          text: 'Dutch',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'Hindi',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'Tobagonian Creole English',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        }
+      ]
+    },
+    {
+      label: 'Selected Languages',
+      options: [
+        {
+          text: 'Arabic',
+          tabIndex: -1,
+          isSelected: true,
+          isGrabbed: false
+        },
+        {
+          text: 'Chinese',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'English',
+          tabIndex: -1,
+          isSelected: false,
+          isGrabbed: false
+        },
+        {
+          text: 'German',
           tabIndex: 0,
           isSelected: true,
           isGrabbed: false

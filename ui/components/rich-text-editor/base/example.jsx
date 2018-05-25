@@ -19,6 +19,7 @@ const listboxOptionId01 = 'listbox-option-unique-id-01';
 const listboxOptionId02 = 'listbox-option-unique-id-02';
 const listboxOptionId03 = 'listbox-option-unique-id-03';
 const listboxOptionId04 = 'listbox-option-unique-id-04';
+const richTextEditorLabelId01 = 'rich-text-editor-unique-id-01';
 
 /// ////////////////////////////////////////
 // Partial(s)
@@ -35,14 +36,20 @@ export let Demo = props => (
 );
 
 export let RichTextEditor = props => (
-  <div
-    {...props}
-    className={classNames(
-      'slds-rich-text-editor slds-form-element slds-grid slds-grid_vertical slds-nowrap',
-      props.className
+  <div className="slds-form-element">
+    {props.label && (
+      <span id={props.labelId} className="slds-form-element__label">
+        {props.label}
+      </span>
     )}
-  >
-    {props.children}
+    <div
+      className={classNames(
+        'slds-rich-text-editor slds-grid slds-grid_vertical slds-nowrap',
+        props.className
+      )}
+    >
+      {props.children}
+    </div>
   </div>
 );
 
@@ -375,11 +382,19 @@ export let RteClearFormatting = props => (
 );
 
 export let RteTextarea = props => (
-  <div className="slds-rich-text-editor__textarea slds-grid">
+  <div
+    className={classNames(
+      props.text
+        ? 'slds-rich-text-editor__output'
+        : 'slds-rich-text-editor__textarea',
+      'slds-grid'
+    )}
+  >
     {props.text ? (
       <div
         aria-describedby={props['aria-describedby']}
-        aria-label="Compose text"
+        aria-label={!props.labelId ? 'Compose text' : null}
+        aria-labelledby={props.labelId}
         contentEditable={!props.disabled ? 'true' : null}
         suppressContentEditableWarning
         className="slds-rich-text-area__content slds-grow"
@@ -389,7 +404,8 @@ export let RteTextarea = props => (
     ) : (
       <div
         aria-describedby={props['aria-describedby']}
-        aria-label="Compose text"
+        aria-label={!props.labelId ? 'Compose text' : null}
+        aria-labelledby={props.labelId}
         contentEditable={!props.disabled ? 'true' : null}
         suppressContentEditableWarning
         className="slds-rich-text-area__content slds-text-color_weak slds-grow"
@@ -420,8 +436,32 @@ let TextInputExample = props => (
       labore et dolore magna aliqua.
     </p>
     <ul>
-      <li>Unordered list item</li>
-      <li>Unordered list item</li>
+      <li>
+        Unordered list item
+        <ul>
+          <li>
+            Nested Unordered list item
+            <ol>
+              <li>Nested Ordered list item</li>
+              <li>Nested Ordered list item</li>
+            </ol>
+          </li>
+          <li>
+            Nested Unordered list item
+            <ul>
+              <li>Nested Unordered list item</li>
+              <li>Nested Unordered list item</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Unordered list item
+        <ol>
+          <li>Nested Ordered list item</li>
+          <li>Nested Ordered list item</li>
+        </ol>
+      </li>
       <li>Unordered list item</li>
     </ul>
     <h3>Heading - h3</h3>
@@ -430,9 +470,61 @@ let TextInputExample = props => (
       tempor incididunt ut labore et dolore magna aliqua.
     </p>
     <ol>
+      <li>
+        Ordered list item
+        <ul>
+          <li>
+            Nested Unordered list item
+            <ol>
+              <li>Nested Ordered list item</li>
+              <li>Nested Ordered list item</li>
+            </ol>
+          </li>
+          <li>
+            Nested Unordered list item
+            <ul>
+              <li>Nested Unordered list item</li>
+              <li>Nested Unordered list item</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Ordered list item
+        <ol>
+          <li>
+            Nested Ordered list item
+            <ol>
+              <li>
+                Nested Ordered list item
+                <ol>
+                  <li>Nested Ordered list item</li>
+                  <li>Nested Ordered list item</li>
+                </ol>
+              </li>
+              <li>Nested Ordered list item</li>
+            </ol>
+          </li>
+          <li>Nested Ordered list item</li>
+        </ol>
+      </li>
       <li>Ordered list item</li>
-      <li>Ordered list item</li>
-      <li>Ordered list item</li>
+    </ol>
+    <ul>
+      <li>
+        <div>List Item with div</div>
+      </li>
+      <li>
+        <div>List Item with div</div>
+      </li>
+    </ul>
+    <ol>
+      <li>
+        <div>List Item with div</div>
+      </li>
+      <li>
+        <div>List Item with div</div>
+      </li>
     </ol>
     <h4>Heading - h4</h4>
     <p>
@@ -634,6 +726,28 @@ export let examples = [
             <RteFormatBody />
             <RteClearFormatting />
           </RteToolbar>
+        </RichTextEditor>
+      </Demo>
+    )
+  },
+  {
+    id: 'with-label',
+    label: 'With a Label',
+    element: (
+      <Demo>
+        <RichTextEditor
+          label="Details and Steps to Reproduce"
+          labelId={richTextEditorLabelId01}
+        >
+          <RteToolbar>
+            <RteFormatText tabIndexSetting="0" />
+            <RteFormatBody />
+            <RteClearFormatting />
+          </RteToolbar>
+          <RteTextarea
+            placeholder="Compose text..."
+            labelId={richTextEditorLabelId01}
+          />
         </RichTextEditor>
       </Demo>
     )

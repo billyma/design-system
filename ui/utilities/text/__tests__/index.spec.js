@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import createHelpers from '../../../../jest.setup';
+import createHelpers from '../../../../jest.helpers';
 const { matchesMarkupAndStyle } = createHelpers(__dirname);
 
 describe('renders text utilities', () => {
@@ -150,6 +150,15 @@ describe('renders text utilities', () => {
     matchesMarkupAndStyle(
       <div style={{ padding: '0.5rem', background: '#16325c' }}>
         <div className="slds-text-color_inverse-weak">
+          The quick brown fox jumps over the lazy dog.
+        </div>
+      </div>
+    ));
+
+  it('renders monospace text font', () =>
+    matchesMarkupAndStyle(
+      <div style={{ padding: '0.5rem', background: '#16325c' }}>
+        <div className="slds-text-font_monospace">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>

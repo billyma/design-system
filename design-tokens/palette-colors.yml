@@ -52,6 +52,12 @@ props:
   BRAND_PRIMARY_TRANSPARENT:
     value: "rgba(21,137,238,0.1)"
     comment: "Transparent value of BRAND_PRIMARY"
+  BRAND_PRIMARY_TRANSPARENT_10:
+    value: "rgba(21,137,238,0.1)"
+    comment: "Transparent value of BRAND_PRIMARY at 10%"
+  BRAND_PRIMARY_TRANSPARENT_40:
+    value: "rgba(21,137,238,0.4)"
+    comment: "Transparent value of BRAND_PRIMARY at 40%"
   BRAND_LIGHT:
     value: "#f4f6fe"
     comment: "Light variant of BRAND that is accessible with dark colors"
@@ -94,20 +100,29 @@ props:
   BRAND_HEADER:
     value: "#ffffff"
     comment: "Background color a branded app header"
+  BRAND_HEADER_CONTRAST_WEAK:
+    value: "#919191"
+    comment: "Weak contrast ratio, useful for iconography"
+  BRAND_HEADER_CONTRAST_WEAK_ACTIVE:
+    value: "#818181"
+    comment: "Active / Hover state of BRAND_HEADER_CONTRAST_WEAK"
+  BRAND_HEADER_CONTRAST_WEAK_DISABLED:
+    value: "rgba(166,166,166,0.25)"
+    comment: "Disabled state of BRAND_HEADER_CONTRAST_WEAK"
   BRAND_HEADER_ICON:
-    value: "#a6a6a6"
+    value: "#919191"
     comment: "Icons of BRAND_HEADER that is accessible with BRAND_HEADER"
   BRAND_HEADER_ICON_ACTIVE:
-    value: "#969696"
+    value: "#818181"
     comment: "Active / Hover state of BRAND_HEADER_ICON"
   BRAND_HEADER_ICON_DISABLED:
-    value: "rgba(166,166,166,0.25)"
+    value: "rgba(145,145,145,0.25)"
     comment: "Disabled state of BRAND_HEADER_ICON"
   BRAND_HEADER_CONTRAST:
-    value: "#6a6a6a"
+    value: "#5e5e5e"
     comment: "Variant of BRAND_HEADER that is accessible with BRAND_HEADER"
   BRAND_HEADER_CONTRAST_ACTIVE:
-    value: "#5c5c5c"
+    value: "#505050"
     comment: "Active / Hover state of BRAND_HEADER_CONTRAST"
   BRAND_HEADER_CONTRAST_INVERSE:
     value: "#ffffff"
@@ -116,19 +131,19 @@ props:
     value: "#eeeeee"
     comment: "Active / Hover state of BRAND_HEADER_CONTRAST"
   BRAND_HEADER_CONTRAST_COOL:
-    value: "#0B6493"
+    value: "#005583"
     comment: "Variant of BRAND_HEADER_CONTRAST that provides a cool color"
   BRAND_HEADER_CONTRAST_COOL_ACTIVE:
-    value: "#0A547B"
+    value: "#005583"
     comment: "Active / Hover state of BRAND_HEADER_CONTRAST_COOL"
   BRAND_HEADER_CONTRAST_WARM:
     value: "#BF0201"
     comment: "Variant of BRAND_HEADER_CONTRAST that provides a warm color"
   BRAND_HEADER_CONTRAST_WARM_ACTIVE:
-    value: "#920A0A"
+    value: "#ac0000"
     comment: "Active / Hover state of BRAND_HEADER_CONTRAST_WARM"
   BRAND_TEXT_LINK:
-    value: "#0070D2"
+    value: "#006DCC"
     comment: "Primary text link brand color"
   BRAND_TEXT_LINK_ACTIVE:
     value: "#005fb2"

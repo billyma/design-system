@@ -17,19 +17,30 @@ import { UtilityIcon } from '../../icons/base/example';
 // Partial(s)
 /// ////////////////////////////////////////
 
+export const Option = props => (
+  <span className="slds-text-title" key={_.uniqueId()}>
+    {props.label}
+  </span>
+);
+
 export let VisualPicker = props => {
   const uniqueId = _.uniqueId('visual-picker-');
 
   return (
     <div
-      className={classNames('slds-visual-picker', {
-        'slds-visual-picker_large': props.size === 'large',
-        'slds-visual-picker_medium': props.size == 'medium'
-      })}
+      className={classNames(
+        'slds-visual-picker',
+        {
+          'slds-visual-picker_large': props.size === 'large',
+          'slds-visual-picker_medium': props.size == 'medium'
+        },
+        props.className
+      )}
     >
       <input
         type={props.type}
         id={uniqueId}
+        value={uniqueId}
         name="options"
         defaultChecked={props.checked}
         disabled={props.disabled}
@@ -38,8 +49,7 @@ export let VisualPicker = props => {
         {props.icon ? (
           <span
             className={classNames(
-              'slds-visual-picker__figure slds-visual-picker__icon slds-align_absolute-center',
-              props.className
+              'slds-visual-picker__figure slds-visual-picker__icon slds-align_absolute-center'
             )}
           >
             <span className="slds-is-selected">
@@ -83,8 +93,7 @@ export let VisualPicker = props => {
         ) : (
           <span
             className={classNames(
-              'slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center',
-              props.className
+              'slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center'
             )}
           >
             {props.children}
@@ -137,7 +146,7 @@ export default (
         icon
         sprite="utility"
         symbol="connected_apps"
-        label="Connected App"
+        label={<Option label="Connected App" />}
         size="medium"
       />
       <VisualPicker
@@ -145,7 +154,7 @@ export default (
         icon
         sprite="utility"
         symbol="custom_apps"
-        label="Custom App"
+        label={<Option label="Custom App" />}
         size="medium"
       />
     </FormElementControl>
@@ -165,7 +174,7 @@ export let states = [
             icon
             sprite="utility"
             symbol="connected_apps"
-            label="Connected App"
+            label={<Option label="Connected App" />}
             size="medium"
           />
           <VisualPicker
@@ -174,7 +183,7 @@ export let states = [
             icon
             sprite="utility"
             symbol="custom_apps"
-            label="Custom App"
+            label={<Option label="Custom App" />}
             size="medium"
           />
         </FormElementControl>
@@ -196,7 +205,7 @@ export let examples = [
             icon
             sprite="standard"
             symbol="account"
-            label="Account"
+            label={<Option label="Account" />}
             size="medium"
           />
           <VisualPicker
@@ -204,7 +213,7 @@ export let examples = [
             icon
             sprite="standard"
             symbol="lead"
-            label="Lead"
+            label={<Option label="Lead" />}
             size="medium"
           />
           <VisualPicker
@@ -212,7 +221,7 @@ export let examples = [
             icon
             sprite="standard"
             symbol="orders"
-            label="Orders"
+            label={<Option label="Orders" />}
             size="medium"
           />
         </FormElementControl>

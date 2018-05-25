@@ -3,6 +3,7 @@
 
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 class Component extends React.Component {
   render() {
@@ -41,14 +42,14 @@ class Component extends React.Component {
 }
 
 Component.displayName = 'MediaObject';
-Component.PropTypes = {
-  figureLeft: React.PropTypes.node,
-  figureLeftClassName: React.PropTypes.string,
-  figureRight: React.PropTypes.node,
-  figureRightClassName: React.PropTypes.string,
-  figureCenter: React.PropTypes.node,
-  figureCenterClassName: React.PropTypes.string,
-  flavor: React.PropTypes.oneOf(['center', 'small', 'stacked'])
+Component.propTypes = {
+  figureLeft: PropTypes.node,
+  figureLeftClassName: PropTypes.string,
+  figureRight: PropTypes.node,
+  figureRightClassName: PropTypes.string,
+  figureCenter: PropTypes.node,
+  figureCenterClassName: PropTypes.string,
+  flavor: PropTypes.oneOf(['center', 'small', 'stacked', 'responsive'])
 };
 
 export default Component;

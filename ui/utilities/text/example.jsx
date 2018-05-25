@@ -120,6 +120,11 @@ export let examples = [
     element: <Text className="slds-text-color_default" />
   },
   {
+    id: 'text-color-success',
+    label: 'Color - Success',
+    element: <Text className="slds-text-color_success" />
+  },
+  {
     id: 'text-color-weak',
     label: 'Color - Weak',
     element: <Text className="slds-text-color_weak" />
@@ -152,5 +157,10 @@ export let examples = [
         <Text className="slds-text-color_inverse-weak" />
       </div>
     )
+  },
+  {
+    id: 'text-font-monospace',
+    label: 'Font - Monospace',
+    element: <Text className="slds-text-font_monospace" />
   }
 ];

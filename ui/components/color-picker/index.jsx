@@ -81,7 +81,6 @@ export const ColorPickerSummary = props => {
 
       <Button
         className="slds-color-picker__summary-button slds-button_icon slds-button_icon-more"
-        aria-haspopup
         title="Choose Color"
       >
         <Swatch color="hsl(220, 46%, 55%)" suppressAssistiveText />
@@ -239,8 +238,8 @@ const ColorPickerCustom = props => {
  */
 const ColorPickerFooter = () => (
   <div className="slds-color-picker__selector-footer">
-    <Button className="slds-button_neutral">Cancel</Button>
-    <Button className="slds-button_brand">Done</Button>
+    <Button isNeutral>Cancel</Button>
+    <Button isBrand>Done</Button>
   </div>
 );
 

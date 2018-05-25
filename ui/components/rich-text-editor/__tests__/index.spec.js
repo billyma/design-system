@@ -3,7 +3,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import createHelpers from '../../../../jest.setup';
+import createHelpers from '../../../../jest.helpers';
 import {
   RichTextEditor,
   RteToolbar,
@@ -18,6 +18,21 @@ import {
 } from '../base/example';
 
 const { matchesMarkupAndStyle } = createHelpers(__dirname);
+
+const IndentedOutputText = props => (
+  <ol>
+    <li>Outer List</li>
+    <li>
+      Outer List
+      <ol>
+        <li>Inner List</li>
+        <li>Inner List</li>
+      </ol>
+    </li>
+    <li>Outer List</li>
+    <li>Outer List</li>
+  </ol>
+);
 
 it('renders an RTE toolbar in a narrow space', () =>
   matchesMarkupAndStyle(
@@ -36,4 +51,30 @@ it('renders an RTE toolbar in a narrow space', () =>
         <RteTextarea placeholder="Compose Email..." />
       </RichTextEditor>
     </div>
+  ));
+
+it('renders a RTE output with indentation', () =>
+  matchesMarkupAndStyle(<RteTextarea text={<IndentedOutputText />} />));
+
+it('renders a RTE textarea with aria-label when no label is present', () =>
+  matchesMarkupAndStyle(<RteTextarea placeholder="Compose text..." />));
+
+it('renders a RTE textarea with aria-labelledby', () =>
+  matchesMarkupAndStyle(
+    <RteTextarea placeholder="Compose text..." labelId="rte-label-id-01" />
+  ));
+
+it('renders a RTE editor with a label', () =>
+  matchesMarkupAndStyle(
+    <RichTextEditor
+      label="Details and Steps to Reproduce"
+      labelId="rte-label-id-02"
+    >
+      <RteToolbar>
+        <RteFormatText tabIndexSetting="0" />
+        <RteFormatBody />
+        <RteClearFormatting />
+      </RteToolbar>
+      <RteTextarea placeholder="Compose text..." labelId="rte-label-id-02" />
+    </RichTextEditor>
   ));

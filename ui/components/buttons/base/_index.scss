@@ -1,33 +1,9 @@
 // Copyright (c) 2015-present, salesforce.com, inc. All rights reserved
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
+@import 'deprecate';
+
 /**
- * The base `.slds-button` looks like a plain text link. It removes all the
- * styling of the native button. It’s typically used to trigger a modal or
- * display a “like” link. All button variations are built by adding another
- * class to `.slds-button`.
- *
- * Add the `.slds-button_neutral` class to create a neutral button, which
- * has a white background and gray border.
- *
- * Use a neutral icon button is for buttons with an icon on the left or
- * right (not for stateful buttons). Add the `.slds-button_neutral` class
- * to `.slds-button`.
- *
- * The SVG inside receives the `.slds-button__icon` class. You can position
- * the icon on the right or the left using `.slds-button__icon_right` or
- * `.slds-button__icon_left` , which apply the correct amount of space
- * between the icon and the text.
- *
- * To create the brand button, add the `.slds-button_brand` class to
- * the `.slds-button` class.
- *
- * To create the destructive button, add the `.slds-button_destructive`
- * class to the `.slds-button` class.
- *
- * Use the inverse button on dark backgrounds. Add the `.slds-button_inverse`
- * class to the `.slds-button` class.
- *
  * @summary This neutralizes all the base styles making it look like a text link
  *
  * @name base
@@ -102,9 +78,7 @@
   }
   // Add spacing when another button is adjacent to it
   + .slds-button {
-    @include deprecate('4.0.0') {
-      margin-left: $spacing-xx-small;
-    }
+    margin-left: $spacing-xx-small;
   }
 }
 
@@ -171,6 +145,26 @@ a.slds-button--inverse:focus {
 .slds-button--brand {
   @include button;
   @include button-brand;
+
+  &[disabled] {
+    background: $brand-disabled;
+    border-color: $brand-disabled;
+    color: $color-text-button-brand-disabled;
+  }
+}
+
+/**
+ * Creates the outlined button with the brand color
+ *
+ * @selector .slds-button_outline-brand
+ * @restrict .slds-button
+ * @modifier
+ * @group theme
+ */
+.slds-button_outline-brand {
+  @include button;
+  @include button-base;
+  border-color: $brand-accessible;
 
   &[disabled] {
     background: $brand-disabled;
@@ -274,16 +268,6 @@ a.slds-button--inverse:focus {
   // height as small buttons since they're SVG
   // and line-height has no effect on them
   min-height: $square-icon-medium-boundary;
-}
-
-/**
- * @selector .slds-button-space-left
- * @deprecated
- */
-.slds-button-space-left {
-  @include deprecate('4.0.0', 'Use spacing utilities instead') {
-    margin-left: $spacing-xx-small;
-  }
 }
 
 // This isn't a pattern and isn't used anywhere and shouldn't be exposed,

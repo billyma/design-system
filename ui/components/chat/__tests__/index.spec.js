@@ -14,7 +14,7 @@ import {
 } from '../';
 import { DoctypeIcon } from '../../icons/doctype/example';
 
-import createHelpers from '../../../../jest.setup';
+import createHelpers from '../../../../jest.helpers';
 
 const { matchesMarkupAndStyle } = createHelpers(__dirname);
 
@@ -174,7 +174,7 @@ describe('Chat message body', () => {
 
   it('renders an inbound chat message body that shows sneak peak', () =>
     matchesMarkupAndStyle(
-      <ChatMessageBody type="inbound" hasSneakPeak isTyping isPaused>
+      <ChatMessageBody type="inbound" hasSneakPeek isTyping isPaused>
         Message
       </ChatMessageBody>
     ));
@@ -194,6 +194,29 @@ describe('Chat message body', () => {
           title="Attachment"
         />
         <a href="#">filename_of_attachment.jpg</a>
+      </ChatMessageBody>
+    ));
+
+  it('renders an inbound chat message body with an unsupported message type', () =>
+    matchesMarkupAndStyle(
+      <ChatMessageBody
+        type="unsupported-type"
+        name="Ayesha Mazumdar"
+        timeStamp="4:59 PM"
+      >
+        Message type is not supported
+      </ChatMessageBody>
+    ));
+
+  it('renders an outbound chat message body with a delivery failure', () =>
+    matchesMarkupAndStyle(
+      <ChatMessageBody
+        type="delivery-failure"
+        deliveryFailureReason="Message was not delivered because Andy stopped receiving messages."
+        name="Ayesha Mazumdar"
+        timeStamp="4:59 PM"
+      >
+        It might be the cause of the problem
       </ChatMessageBody>
     ));
 });

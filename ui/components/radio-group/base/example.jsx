@@ -40,14 +40,15 @@ export let Radio = props => {
       <input
         type="radio"
         id={props.id ? props.id : uniqueId}
+        value={props.id ? props.id : uniqueId}
         name={props.name || 'options'}
         disabled={props.disabled}
         defaultChecked={props.checked}
         tabIndex={props.tabIndex}
         aria-describedby={props.errorId}
         aria-labelledby={
-          props.labelId && props.radioGroupId
-            ? props.labelId + ' ' + props.radioGroupId
+          props.labelId && props.groupId
+            ? props.labelId + ' ' + props.groupId
             : null
         }
       />

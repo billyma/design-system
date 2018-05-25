@@ -2,7 +2,7 @@
 import React from 'react';
 import { Alert } from '../base/example';
 import { UtilityIcon } from '../../icons/base/example';
-import createHelpers from '../../../../jest.setup';
+import createHelpers from '../../../../jest.helpers';
 
 const { matchesMarkupAndStyle } = createHelpers(__dirname);
 
@@ -45,7 +45,7 @@ it('renders a error alert', () =>
         containerClassName="slds-m-right_x-small"
         className="slds-icon_x-small"
         assistiveText={false}
-        symbol="ban"
+        symbol="error"
       />
       <h2>
         Your browser is currently not supported. Your Salesforce may be

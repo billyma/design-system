@@ -55,24 +55,33 @@ export let Checkbox = props => {
         type="checkbox"
         name={props.name || 'options'}
         id={props.id ? props.id : uniqueId}
+        value={props.id ? props.id : uniqueId}
         disabled={props.disabled}
         defaultChecked={props.checked}
         aria-describedby={props.errorId}
         tabIndex={props.tabIndex}
+        aria-labelledby={
+          props.labelId && props.groupId
+            ? props.labelId + ' ' + props.groupId
+            : null
+        }
       />
       <label
         className={classNames('slds-checkbox__label')}
         htmlFor={props.id ? props.id : uniqueId}
+        id={props.labelId}
       >
         <span className="slds-checkbox_faux" />
-        <span
-          className={classNames(
-            'slds-form-element__label',
-            props.hideLabel ? 'slds-assistive-text' : null
-          )}
-        >
-          {props.label}
-        </span>
+        {props.label && (
+          <span
+            className={classNames(
+              'slds-form-element__label',
+              props.hideLabel ? 'slds-assistive-text' : null
+            )}
+          >
+            {props.label}
+          </span>
+        )}
       </label>
     </span>
   );

@@ -7,6 +7,7 @@ import { Trigger } from '../dropdown/example';
 import { Menu } from '../dropdown/example';
 import { MenuList } from '../dropdown/example';
 import { MenuItem } from '../dropdown/example';
+import classNames from 'classnames';
 
 /// ////////////////////////////////////////
 // Partial(s)
@@ -20,7 +21,6 @@ export const Context = props => (
 const moreIcon = (
   <ButtonIcon
     className="slds-button_icon-border-filled slds-button_icon-x-small"
-    sprite="utility"
     symbol="down"
     assistiveText="Show More"
     aria-haspopup="true"
@@ -28,17 +28,25 @@ const moreIcon = (
   />
 );
 
-export const ActionOverflow = props => (
-  <Trigger className="slds-is-open" triggerIcon={moreIcon}>
-    <Menu className="slds-dropdown_left slds-dropdown_actions">
-      <MenuList>
-        <MenuItem tabIndex="0">Action One</MenuItem>
-        <MenuItem>Action Two</MenuItem>
-        <MenuItem>Action Three</MenuItem>
-      </MenuList>
-    </Menu>
-  </Trigger>
-);
+export const ActionOverflow = props => {
+  const position = props.position || 'left';
+  return (
+    <Trigger className="slds-is-open" triggerIcon={moreIcon}>
+      <Menu
+        className={classNames(
+          'slds-dropdown_actions',
+          `slds-dropdown_${position}`
+        )}
+      >
+        <MenuList>
+          <MenuItem tabIndex="0">Action One</MenuItem>
+          <MenuItem>Action Two</MenuItem>
+          <MenuItem>Action Three</MenuItem>
+        </MenuList>
+      </Menu>
+    </Trigger>
+  );
+};
 
 /// ///////////////////////////////////////////
 // Export

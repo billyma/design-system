@@ -3,6 +3,7 @@
 
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const Crumb = props => (
   <li className={classNames('slds-breadcrumb__item', props.className)}>
@@ -10,10 +11,10 @@ const Crumb = props => (
   </li>
 );
 
-Crumb.propTypes = { href: React.PropTypes.string };
+Crumb.propTypes = { href: PropTypes.string };
 
 const BreadCrumbs = props => (
-  <nav {...props} role="navigation" aria-label="Breadcrumbs">
+  <nav role="navigation" aria-label="Breadcrumbs">
     <ol
       className={classNames(
         'slds-breadcrumb slds-list_horizontal slds-wrap',

@@ -122,7 +122,7 @@ props:
     value: '{!TANGERINE}'
     comment: Customer text used in anchor subtitle
   COLOR_TEXT_SUCCESS:
-    value: '{!FUN_GREEN}'
+    value: '{!FOREST_GREEN}'
     comment: Text color for success text.
   COLOR_TEXT_SUCCESS_INVERSE:
     value: '{!EMERALD}'
@@ -149,7 +149,7 @@ props:
     comment: Input icon
   ## LINKS
   COLOR_TEXT_LINK:
-    value: '{!SCIENCE_BLUE}'
+    value: '{!SANTORINI}'
     comment: Link text (508)
   COLOR_TEXT_LINK_ACTIVE:
     value: '{!MIDNIGHT_BLUE}'

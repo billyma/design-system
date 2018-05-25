@@ -8,9 +8,13 @@ import {
   InlineEditTableContainer as Container,
   AdvancedDataTable as Table,
   Thead,
-  InlineEditTr,
-  ErrorTooltip
+  InlineEditTr
 } from '../';
+
+import { Popover } from '../../popovers/base/example';
+import { FeedbackHeader } from '../../popovers/error/example';
+
+const headingUniqueId = _.uniqueId('dialog-heading-id-');
 
 const columns = [
   'Name',
@@ -51,6 +55,12 @@ const rows = [
     contact: 'nathan@salesforce.com'
   }
 ];
+
+let Demo = props => (
+  <div className="demo-only" {...props}>
+    {props.children}
+  </div>
+);
 
 export const InlineEditTable = () => (
   <Container>
@@ -312,6 +322,35 @@ export let states = [
     )
   },
   {
+    id: 'row-selected-with-edited-cell',
+    label: 'Row Selected with an Edited Cell',
+    element: (
+      <Container>
+        <Table isEditable style={{ width: '66.75rem' }}>
+          <Thead
+            actionableMode
+            columns={columns}
+            hasErrorColumn
+            mainColumnWidth="8.75rem"
+          />
+          <tbody>
+            {_.times(rows.length, i => (
+              <InlineEditTr
+                key={i}
+                index={i + 1}
+                className={i === 0 ? 'slds-is-selected' : null}
+                {...rows[i]}
+                rowSelected={i === 0 ? true : null}
+                actionableMode
+                showEditedCell
+              />
+            ))}
+          </tbody>
+        </Table>
+      </Container>
+    )
+  },
+  {
     id: 'row-error',
     label: 'Error - Row level on save (Actionable mode)',
     element: (
@@ -345,8 +384,9 @@ export let states = [
     `
   },
   {
-    id: 'row-error-focused',
-    label: 'Error indicator - Focused (Actionable mode)',
+    id: 'row-error-and-selected',
+    label:
+      'Error - Row level on save (Actionable mode) with entire row selected',
     element: (
       <Container>
         <Table isEditable style={{ width: '66.75rem' }}>
@@ -361,19 +401,69 @@ export let states = [
               <InlineEditTr
                 key={i}
                 index={i + 1}
+                className={i === 0 ? 'slds-is-selected' : null}
                 {...rows[i]}
+                rowSelected={i === 0 ? true : null}
                 actionableMode
-                focusableCell="error"
-                focusedCell="error"
                 showCellError
                 showRowError
-                showRowErrorTooltip
               />
             ))}
           </tbody>
         </Table>
-        <ErrorTooltip />
       </Container>
+    )
+  },
+  {
+    id: 'row-error-focused',
+    label: 'Error indicator - Focused (Actionable mode)',
+    element: (
+      <Demo style={{ marginTop: '100px', marginLeft: '10px' }}>
+        <Container>
+          <Table isEditable style={{ width: '66.75rem' }}>
+            <Thead
+              actionableMode
+              columns={columns}
+              hasErrorColumn
+              mainColumnWidth="8.75rem"
+            />
+            <tbody>
+              {_.times(rows.length, i => (
+                <InlineEditTr
+                  key={i}
+                  index={i + 1}
+                  {...rows[i]}
+                  actionableMode
+                  focusableCell="error"
+                  focusedCell="error"
+                  showCellError
+                  showRowError
+                />
+              ))}
+            </tbody>
+          </Table>
+          <Popover
+            className="slds-popover_error slds-nubbin_bottom-left"
+            headingId={headingUniqueId}
+            popoverId="error-tooltip-01"
+            header={
+              <FeedbackHeader
+                headingId={headingUniqueId}
+                title="Resolve error"
+                symbol="error"
+              />
+            }
+            style={{
+              position: 'absolute',
+              top: '-56px'
+            }}
+            closeButton
+            inverse
+          >
+            <p>Company encountered an error</p>
+          </Popover>
+        </Container>
+      </Demo>
     ),
     script: `
       document.getElementById('error-01').focus()

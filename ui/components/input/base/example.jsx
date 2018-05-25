@@ -3,6 +3,7 @@
 
 import React from 'react';
 import SvgIcon from '../../../shared/svg-icon';
+import ButtonIcon from '../../button-icons/';
 import classNames from 'classnames';
 import { SpinnerContainer, Spinner } from '../../spinners/base/example';
 
@@ -23,6 +24,7 @@ export let FormElementLabel = props => (
   <label
     className={classNames('slds-form-element__label', props.className)}
     htmlFor={props.id || inputId}
+    id={props.labelID}
   >
     {props.children}
   </label>
@@ -178,6 +180,30 @@ export let states = [
         </FormElementControl>
       </FormElement>
     )
+  },
+  {
+    id: 'static-tightened',
+    label: 'Static - Tightened',
+    element: (
+      <div>
+        <FormElement className="slds-form-element_small slds-form-element_edit">
+          <span className="slds-form-element__label">Input Label</span>
+          <FormElementControl>
+            <span className="slds-form-element__static slds-border_bottom">
+              Read Only
+            </span>
+          </FormElementControl>
+        </FormElement>
+        <FormElement className="slds-form-element_small slds-form-element_edit">
+          <span className="slds-form-element__label">Input Label</span>
+          <FormElementControl>
+            <span className="slds-form-element__static slds-border_bottom">
+              Read Only
+            </span>
+          </FormElementControl>
+        </FormElement>
+      </div>
+    )
   }
 ];
 
@@ -247,7 +273,7 @@ export let examples = [
     element: (
       <FormElement>
         <FormElementLabel>Input Label</FormElementLabel>
-        <FormElementControl className="slds-input-has-icon slds-input-has-icon_left-right">
+        <FormElementControl className="slds-input-has-icon slds-input-has-icon_left-right slds-input-has-icon_group-right">
           <SvgIcon
             className="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default"
             sprite="utility"
@@ -274,15 +300,32 @@ export let examples = [
     label: 'Fixed text',
     element: (
       <FormElement>
-        <FormElementLabel>Input Label</FormElementLabel>
+        <FormElementLabel labelID="fixed-text-label">
+          Input Label
+        </FormElementLabel>
         <FormElementControl className="slds-input-has-fixed-addon">
           <span className="slds-form-element__addon" id="fixed-text-addon-pre">
             $
           </span>
-          <Input aria-describedby="fixed-text-addon-pre fixed-text-addon-post" />
+          <Input aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post" />
           <span className="slds-form-element__addon" id="fixed-text-addon-post">
             euro
           </span>
+        </FormElementControl>
+      </FormElement>
+    )
+  },
+  {
+    id: 'inline-help',
+    label: 'Inline Help',
+    element: (
+      <FormElement>
+        <FormElementLabel labelID="inline-text-label">
+          Input Label
+        </FormElementLabel>
+        <FormElementControl>
+          <Input aria-labelledby="inline-text-label" />
+          <div className="slds-form-element__help">ex: (415)111-2222</div>
         </FormElementControl>
       </FormElement>
     )
@@ -341,6 +384,37 @@ export let examples = [
           </div>
         </div>
       </div>
+    )
+  },
+  {
+    id: 'counter',
+    label: 'Counter',
+    element: (
+      <FormElement className="slds-text-align_center">
+        <ButtonIcon
+          className="slds-button_icon-small slds-input__button_decrement"
+          symbol="ban"
+          assistiveText={'Decrement counter'}
+          title={'Decrement counter'}
+        />
+        <FormElementLabel id="user-count-01" className="slds-m-right_none">
+          Input Label
+        </FormElementLabel>
+        <FormElementControl>
+          <Input
+            className="slds-input_counter"
+            id="user-count-01"
+            type="number"
+            placeholder={1}
+          />
+        </FormElementControl>
+        <ButtonIcon
+          className="slds-button_icon-small slds-input__button_increment"
+          symbol="new"
+          assistiveText={'Increment counter'}
+          title={'Increment counter'}
+        />
+      </FormElement>
     )
   }
 ];
